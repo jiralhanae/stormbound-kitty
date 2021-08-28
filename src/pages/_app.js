@@ -5,7 +5,6 @@ import CollectionProvider from '~/components/CollectionProvider'
 import ErrorBoundary from '~/components/ErrorBoundary'
 import NotificationProvider from '~/components/NotificationProvider'
 import PersonalDecksProvider from '~/components/PersonalDecksProvider'
-import ImageSupportProvider from '~/components/ImageSupportProvider'
 import createFelaRenderer from '~/helpers/createFelaRenderer'
 
 const fallbackRenderer = createFelaRenderer()
@@ -28,15 +27,13 @@ function App({ Component, pageProps, renderer = fallbackRenderer }) {
       </Head>
       <RendererProvider renderer={renderer}>
         <ErrorBoundary>
-          <ImageSupportProvider>
-            <NotificationProvider>
-              <CollectionProvider>
-                <PersonalDecksProvider>
-                  <Component {...pageProps} />
-                </PersonalDecksProvider>
-              </CollectionProvider>
-            </NotificationProvider>
-          </ImageSupportProvider>
+          <NotificationProvider>
+            <CollectionProvider>
+              <PersonalDecksProvider>
+                <Component {...pageProps} />
+              </PersonalDecksProvider>
+            </CollectionProvider>
+          </NotificationProvider>
         </ErrorBoundary>
       </RendererProvider>
       <Script lazyOnload src='/focus-visible.min.js' />

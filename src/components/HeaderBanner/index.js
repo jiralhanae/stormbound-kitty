@@ -1,14 +1,14 @@
 import React from 'react'
 import { useFela } from 'react-fela'
-import { ImageSupportContext } from '~/components/ImageSupportProvider'
 import Only from '~/components/Only'
 import Spacing from '~/components/Spacing'
+import useImageSupport from '~/hooks/useImageSupport'
 import styles from './styles'
 
 const DEFAULT_BANNER = '/assets/images/banners/default_banner.jpg'
 
 const useFileExtension = ({ fileType, withAvif, withoutWebp }) => {
-  const { supportsWebp, supportsAvif } = React.useContext(ImageSupportContext)
+  const { supportsWebp, supportsAvif } = useImageSupport()
 
   if (supportsAvif && withAvif) return 'avif'
   if (supportsWebp && !withoutWebp) return 'webp'
